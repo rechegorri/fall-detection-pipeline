@@ -8,7 +8,7 @@ import PIL.Image as pimg
 
 class PreProcessing:
   def __init__(self) -> None:
-    self.hop_length = 256
+    self.hop_length = 512
     self.n_mels = 128
     self.sr = 16000
 

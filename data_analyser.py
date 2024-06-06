@@ -4,6 +4,7 @@ import time
 import threading
 from pre_processing import PreProcessing
 from classifier import Classifier
+import PIL.Image as pimg
 
 class DataInput:
     def __init__(self, data, timestamp) -> None:
@@ -38,8 +39,11 @@ class DataManagement:
                 item = self.q.get()
                 data, timestamp = item.data, item.get_time()
                 data = self.proc.process(data)
+                img = pimg.fromarray(data)
+                img.save("./test.png")
                 score = self.cl.predict(data)
-                if score < 0.5: ## Queda
+                print(f'SCORE: {score}')
+                if score < 0.85: ## 15% de certeza de Queda
                     print(f"Queda detectada ({timestamp}) | Score: {score}")
                 self.q.task_done()
         ## Processo principal foi interrompido, limpe a pilha

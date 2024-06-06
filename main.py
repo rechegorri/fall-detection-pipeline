@@ -6,7 +6,7 @@ from data_analyser import DataInput, DataManagement
 
 #Global Vars
 RATE=16000
-CHUNK=256
+CHUNK=512
 CHANNELS=1
 fulldata = np.array([])
 KEY_INTERRUPT = False
