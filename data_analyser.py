@@ -42,9 +42,8 @@ class DataManagement:
                 img = pimg.fromarray(data)
                 img.save("./test.png")
                 score = self.cl.predict(data)
-                print(f'SCORE: {score}')
-                if score < 0.85: ## 15% de certeza de Queda
-                    print(f"Queda detectada ({timestamp}) | Score: {score}")
+                if score < 0.3:
+                    print(f"Queda detectada ({timestamp}) | Confiança: {(1.0-score):.2f}")
                 self.q.task_done()
         ## Processo principal foi interrompido, limpe a pilha
         with self.q.mutex:
